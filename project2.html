@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project -2</title>
+</head>
+<style>
+    *{
+        background-color: rgb(0, 46, 2);
+        color:white;
+    }
+
+    button{
+        background-color: white;
+        color: black;
+        padding: 10px;
+        border-radius: 20%;
+
+    }
+
+    #reset{
+        background-color: white;
+        color: black;
+        padding: 10px;
+        border-radius: 20%;
+
+    }
+</style>
+<body>
+
+    <div class="container">
+        <h1>BMI Calculator</h1>
+    <form>
+        <p><label>Height in CM: </label><input type="text" id="height"></p>
+        <p><label>Weight in KG: </label><input type="text" id="weight"></p>
+        <button>Calculate</button>
+        <input type="reset" value="Reset" id="reset">
+        <br><br>
+        <div id="results"></div>
+        <br>
+        <div id="conclusion"></div>
+        <div id="weight-guide">
+            <h3>BMI weight guide</h3>
+            <p>Under weight = less than 18.6</p>
+            <p>Normal weight = 18.6 to 24.9</p>
+            <p>Over weight = more than 24.9 </p>
+        </div>
+    </form>
+    </div>
+    <button>Get Code from here</button>
+</body>
+<script>
+
+   const form = document.querySelector('form')
+   form.addEventListener('submit',function(e){
+         e.preventDefault()
+
+   const height =  parseInt(document.querySelector('#height').value)
+   const weight =  parseInt(document.querySelector('#weight').value)
+   const results = document.querySelector('#results')
+   const conclusion = document.querySelector('#conclusion')
+   
+   if(height === " " || height < 0 || isNaN(height)){
+    results.innerHTML = "Please give a valid height"
+   }
+
+   else if(weight === " " || weight < 0 || isNaN(weight)){
+    results.innerHTML = "Please give a valid weight"
+   }
+
+   else{
+    const bmi = (weight/((height*height)/10000).toFixed(2))
+
+    //result:
+    results.innerHTML = `<span>${bmi}</span>`;
+    
+
+    if(bmi < 18.6){
+        conclusion.innerHTML = `<span>${"You are Underweight"}</span>`;
+    }
+
+    else if(bmi > 24.9){
+        conclusion.innerHTML = `<span>${"You are Over-weight"}</span>`;
+    }
+
+    else{
+        conclusion.innerHTML = `<span>${"You are Fit"}</span>`;
+    }
+   }
+   })
+</script>
+</html>
